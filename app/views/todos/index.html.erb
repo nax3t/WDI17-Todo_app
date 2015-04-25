@@ -1,0 +1,19 @@
+<h1>Todo List</h1>
+
+<ul>
+	<% @todos.each do |todo| %>
+		<li><%= todo.description %></li>
+	<% end %>
+</ul>
+
+<hr>
+
+<%= form_for :todo, url: { action: 'create' } do |f| %>
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description %>
+	</p>
+	<p>
+		<%= f.submit "Submit" %>
+	</p>
+<% end %>
