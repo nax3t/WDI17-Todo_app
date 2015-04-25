@@ -1,13 +1,28 @@
 <h1>Todo List</h1>
 
 <ul>
+	<!--	Loop through the @todos instance variable (that we created in our 
+				index action of our todos_controller when we assigned @todos to Todo.all)
+				and display the description from each of our todos.
+
+				The <span> displays a bootstrap glyphicon (see the class names). This will
+				give us a check mark next to each item on our list.
+
+				We use the link_to url helper to link to our edit page -->
 	<% @todos.each do |todo| %>
-		<li><%= todo.description %></li>
+		<li><span class="glyphicon glyphicon-check"></span> <%= todo.description %> | <%= link_to 'Edit', edit_todos_path(todo.id) %></li>
 	<% end %>
 </ul>
-
 <hr>
 
+<!--  Here we use the form_for form helper to create a form that posts to our 
+			create action in our todos_controller, the code in our create action
+			will use the Todo model to create a new instance of a Todo.
+
+			The params hash is what we package up our form's input values into when
+			we click submit, we can access these values by whitelisting the :todo params
+			and then calling our private method todo_params *see lines 27-33 in the
+			todos_controller.rb file -->
 <%= form_for :todo, url: { action: 'create' } do |f| %>
 	<p>
 		<%= f.label :description %><br>

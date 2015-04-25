@@ -1,0 +1,11 @@
+<!-- 	This form is similar to the form on our index page, but here we are using
+			the PATCH method to update our Todo item -->
+<%= form_for :todo, url: todo_path(@todo), method: :patch do |f| %>
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description %>
+	</p>
+	<p>
+		<%= f.submit "Submit" %>
+	</p>
+<% end %>
